@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center; /* 水平居中 */
+        align-items: center; /* 垂直居中 */
+        height: 100vh; /* 使父容器占满视窗的高度 */
+        margin: 0; /* 去除默认的外边距 */
+        background-color: #aaa;
+      }
+      .grand-parent {
+        background-color: red;
+        display: flex;
+        justify-content: center; /* 水平居中 */
+        align-items: center; /* 垂直居中 */
+        height: 300px;
+        width: 300px;
+      }
+      .parent {
+        background-color: yellowgreen;
+        display: flex;
+        justify-content: center; /* 水平居中 */
+        align-items: center; /* 垂直居中 */
+        height: 150px;
+        width: 150px;
+      }
+      .child {
+        background-color: royalblue;
+        height: 75px;
+        width: 75px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grand-parent">
+      爷爷
+      <div class="parent">
+        爸爸
+        <div class="child">孩子</div>
+      </div>
+    </div>
+    <script>
+      const randomFun = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      };
+      function randomColor() {
+        return `rgb(${randomFun(0, 255)}, ${randomFun(0, 255)}, ${randomFun(
+          0,
+          255
+        )})`;
+      }
+      const grandParent = document.querySelector(".grand-parent");
+      const parent = document.querySelector(".parent");
+      const child = document.querySelector(".child");
+
+      child.addEventListener("click", function (e) {
+        this.style.backgroundColor = randomColor();
+        console.log("Child:", e.target, e.currentTarget);
+      });
+      parent.addEventListener("click", function (e) {
+        this.style.backgroundColor = randomColor();
+        console.log("parent:", e.target, e.currentTarget);
+      });
+
+      grandParent.addEventListener("click", function (e) {
+        this.style.backgroundColor = randomColor();
+        console.log("grandParent:", e.target, e.currentTarget);
+      });
+      //设置在捕获阶段触发事件
+      // grandParent.addEventListener(
+      //   "click",
+      //   function (e) {
+      //     this.style.backgroundColor = randomColor();
+      //     console.log("grandParent:", e.target, e.currentTarget);
+      //   },
+      //   true
+      // );
+    </script>
+  </body>
+</html>
